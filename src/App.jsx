@@ -1,9 +1,32 @@
-function App() {
-  return (
-    <>
-      <h1 className=" text-3xl font-bold underline text-cyan-500">Hello world!</h1>
-    </>
-  );
-}
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import ErrorPage from './error/Error-page';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import Product from './pages/Product';
+import EditProduct from './pages/EditProduct';
 
-export default App;
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/',
+        element: <Home />
+      },
+      {
+        path: '/product',
+        element: <Product />
+      },
+      {
+        path: '/product/edit',
+        element: <EditProduct />
+      }
+    ]
+  }
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}

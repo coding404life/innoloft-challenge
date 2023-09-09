@@ -1,17 +1,20 @@
 import { Link } from 'react-router-dom';
+import Avatar from './Avatar';
 
 const Sidebar = () => {
   return (
-    <aside className="sticky w-64 mt-20 text-black">
-      <nav className="pt-4 pl-6">
-        <ul>
+    <aside className="hidden text-black w-60 mt-28 lg:block">
+      <nav>
+        <Avatar />
+
+        <ul className="mt-5 ml-2">
           <li className="mb-2">
-            <Link to="/" className="block font-semibold transition duration-300 hover:text-blue-300">
+            <Link to="/" className="block transition duration-300 hover:text-blue-300">
               Home
             </Link>
           </li>
           <li>
-            <Link to="/product" className="block font-semibold transition duration-300 hover:text-blue-300">
+            <Link to="/product" className="block transition duration-300 hover:text-blue-300">
               Product
             </Link>
           </li>

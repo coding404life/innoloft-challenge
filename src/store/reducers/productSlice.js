@@ -9,12 +9,14 @@ const initialState = {
   message: ''
 };
 
+const getError = (error) => (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+
 // Get product
 export const getProduct = createAsyncThunk('product/getProduct', async ({ productId }, thunkAPI) => {
   try {
     return await productApi.getProduct(productId);
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+    const message = getError(error);
     return thunkAPI.rejectWithValue(message);
   }
 });
@@ -24,7 +26,7 @@ export const getTRL = createAsyncThunk('product/getTRL', async (thunkAPI) => {
   try {
     return await productApi.getTRL();
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+    const message = getError(error);
     return thunkAPI.rejectWithValue(message);
   }
 });
@@ -34,7 +36,7 @@ export const editProduct = createAsyncThunk('product/edit', async ({ data, produ
   try {
     return await productApi.editProduct(data, productId);
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+    const message = getError(error);
     return thunkAPI.rejectWithValue(message);
   }
 });

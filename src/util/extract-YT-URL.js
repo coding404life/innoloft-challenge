@@ -7,13 +7,8 @@ export function extractVideoIdAndConstructEmbedUrl(youtubeUrl) {
     const match = youtubeUrl.match(videoIdRegex);
 
     // If a match is found, extract the video ID
-    if (match && match[1]) {
-      const videoId = match[1];
-      const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-      return embedUrl;
-    } else {
-      // If no match is found, return null or handle the error as needed
-      return null;
-    }
+    const videoId = match && match[1] ? match[1] : null;
+
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
   }
 }

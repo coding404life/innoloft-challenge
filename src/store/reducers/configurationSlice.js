@@ -9,12 +9,14 @@ const initialState = {
   message: ''
 };
 
+const getError = (error) => (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+
 // Get configuration
 export const getConfiguration = createAsyncThunk('configuration/getConfiguration', async (configuration, thunkAPI) => {
   try {
     return await configurationsApi.getConfiguration(configuration);
   } catch (error) {
-    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+    const message = getError(error);
     return thunkAPI.rejectWithValue(message);
   }
 });

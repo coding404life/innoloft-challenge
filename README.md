@@ -1,4 +1,4 @@
-# Innoloft frontend Challenge
+# Innoloft 
 
 This is my solution for the frontend coding challenge 
 
